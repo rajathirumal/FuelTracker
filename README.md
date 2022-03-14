@@ -11,3 +11,4 @@ App to replace note paper logging of fuel consumption by your car. Have the addi
 | ------------- | ------------- |
 |  firebase_core | ^1.13.1 |
 |  firebase_auth | ^3.3.10 |
+| provider | ^6.0.2|

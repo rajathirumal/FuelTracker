@@ -1,70 +1,71 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:fuel_tracker/services/authentication.dart';
+import 'package:fuel_tracker/src/screens/home.dart';
+import 'package:fuel_tracker/src/screens/login.dart';
+import 'package:provider/provider.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      darkTheme: ThemeData.dark(),
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Fuel Tracker'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+    return MultiProvider(
+      providers: [
+        Provider<AuthenticationService>(
+          create: (context) => AuthenticationService(FirebaseAuth.instance),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        StreamProvider(
+          create: (context) =>
+              context.read<AuthenticationService>().authStateChange,
+          initialData: null,
+        ),
+      ],
+      child: MaterialApp(
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: const AuthenticationWrapper(),
       ),
     );
   }
 }
+
+class AuthenticationWrapper extends StatefulWidget {
+  const AuthenticationWrapper({Key? key}) : super(key: key);
+
+  @override
+  State<AuthenticationWrapper> createState() => _AuthenticationWrapperState();
+}
+
+class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
+  @override
+  Widget build(BuildContext context) {
+    final firebaseuser = context.watch<User?>();
+    if (firebaseuser != null) {
+      return HomePage();
+    } else {
+      return LoginScreen();
+    }
+  }
+}
+
+// class AuthenticationWrapper extends StatelessWidget {
+//   const AuthenticationWrapper({Key? key}) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     final firebaseuser = context.watch<User?>();
+//     if (firebaseuser != null) {
+//       return HomePage();
+//     } else {
+//       return LoginScreen();
+//     }
+//   }
+// }
