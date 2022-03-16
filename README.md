@@ -7,7 +7,7 @@ Applicatioj to replace note paper logging of fuel consumption by your vehicle. H
 
 
 
-| Dependency or Module name  | Version used | Uage |
+| Dependency or Module name  | Version used | Usage |
 | ------------- | ------------- | ------------- |
 |  firebase_core | ^1.13.1 | Core firebase utility |
 |  firebase_auth | ^3.3.10 | To perform firebase authentication |
