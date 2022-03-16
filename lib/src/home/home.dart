@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fuel_tracker/src/screens/login.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:fuel_tracker/services/authentication.dart';
@@ -36,6 +35,24 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         body: Container(),
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.greenAccent,
+          items: const [
+            BottomNavigationBarItem(
+                label: "abc   lable", icon: Icon(Icons.abc)),
+            BottomNavigationBarItem(
+                label: "ac unit", icon: Icon(Icons.ac_unit)),
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(
+            Icons.add,
+            color: Colors.red,
+            size: 40,
+          ),
+          onPressed: () {},
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       ),
     );
   }

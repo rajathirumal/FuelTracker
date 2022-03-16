@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fuel_tracker/services/authentication.dart';
-import 'package:fuel_tracker/src/screens/home.dart';
+import 'package:fuel_tracker/src/home/home.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -20,19 +20,19 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Login"),
+        title: const Text("Login"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(children: [
           TextField(
             keyboardType: TextInputType.emailAddress,
-            decoration: InputDecoration(hintText: "Email"),
+            decoration: const InputDecoration(hintText: "Email"),
             controller: emailController,
           ),
           TextField(
             obscureText: true,
-            decoration: InputDecoration(hintText: "Password"),
+            decoration: const InputDecoration(hintText: "Password"),
             controller: passController,
           ),
           const SizedBox(height: 20.0),
