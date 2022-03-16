@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fuel_tracker/src/pages/add_fuel_page.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:fuel_tracker/services/authentication.dart';
@@ -49,17 +50,19 @@ class _HomePageState extends State<HomePage> {
               child: const Icon(Icons.add),
               label: "Add new fuel",
               onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: const Text(
-                    "Addind fuel",
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  action: SnackBarAction(
-                    label: "ok",
-                    onPressed: () {},
-                  ),
-                  duration: const Duration(seconds: 2),
-                ));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AddFuelPage()));
+                // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                //   content: const Text(
+                //     "Addind fuel",
+                //     style: TextStyle(fontSize: 15),
+                //   ),
+                //   action: SnackBarAction(
+                //     label: "ok",
+                //     onPressed: () {},
+                //   ),
+                //   duration: const Duration(seconds: 2),
+                // ));
               },
             ),
             SpeedDialChild(
