@@ -30,22 +30,23 @@ class _AddFuelPageState extends State<AddFuelPage> {
         child: ListView(
           children: <Widget>[
             TextField(
-              decoration: InputDecoration(hintText: "Fueled for (Rs)"),
+              decoration: const InputDecoration(hintText: "Fueled for (Rs)"),
               keyboardType: TextInputType.number,
               onChanged: (value) => fuelProvider.changeFuelForPrice(value),
             ),
             TextField(
-              decoration: InputDecoration(hintText: "Market price (Rs/liter)"),
+              decoration:
+                  const InputDecoration(hintText: "Market price (Rs/liter)"),
               keyboardType: TextInputType.number,
               onChanged: (value) => fuelProvider.changemarketPrice(value),
             ),
             TextField(
-              decoration: InputDecoration(hintText: "At Km (Km)"),
+              decoration: const InputDecoration(hintText: "At Km (Km)"),
               keyboardType: TextInputType.number,
               onChanged: (value) => fuelProvider.changeAtKm(value),
             ),
             TextField(
-              decoration: InputDecoration(hintText: "Remaining KM (Km)"),
+              decoration: const InputDecoration(hintText: "Remaining KM (Km)"),
               keyboardType: TextInputType.number,
               onChanged: (value) => fuelProvider.changeRemainingKm(value),
             ),
