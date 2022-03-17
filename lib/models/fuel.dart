@@ -6,12 +6,14 @@ class FuelData {
   final double marketpricePerLiter;
   final double atKm;
   final double remainingKM;
+  final String dateOfFuel;
   FuelData({
     required this.fuelID,
     required this.fueledForPrice,
     required this.marketpricePerLiter,
     required this.atKm,
     required this.remainingKM,
+    required this.dateOfFuel,
   });
 
   FuelData copyWith({
@@ -20,6 +22,7 @@ class FuelData {
     double? marketpricePerLiter,
     double? atKm,
     double? remainingKM,
+    String? dateOfFuel,
   }) {
     return FuelData(
       fuelID: fuelID ?? this.fuelID,
@@ -27,6 +30,7 @@ class FuelData {
       marketpricePerLiter: marketpricePerLiter ?? this.marketpricePerLiter,
       atKm: atKm ?? this.atKm,
       remainingKM: remainingKM ?? this.remainingKM,
+      dateOfFuel: dateOfFuel ?? this.dateOfFuel,
     );
   }
 
@@ -37,6 +41,7 @@ class FuelData {
       'marketpricePerLiter': marketpricePerLiter,
       'atKm': atKm,
       'remainingKM': remainingKM,
+      'dateOfFuel': dateOfFuel,
     };
   }
 
@@ -47,6 +52,7 @@ class FuelData {
       marketpricePerLiter: map['marketpricePerLiter']?.toDouble() ?? 0.0,
       atKm: map['atKm']?.toDouble() ?? 0.0,
       remainingKM: map['remainingKM']?.toDouble() ?? 0.0,
+      dateOfFuel: map['dateOfFuel'] ?? '',
     );
   }
 
@@ -57,7 +63,7 @@ class FuelData {
 
   @override
   String toString() {
-    return 'FuelData(fuelID: $fuelID, fueledForPrice: $fueledForPrice, marketpricePerLiter: $marketpricePerLiter, atKm: $atKm, remainingKM: $remainingKM)';
+    return 'FuelData(fuelID: $fuelID, fueledForPrice: $fueledForPrice, marketpricePerLiter: $marketpricePerLiter, atKm: $atKm, remainingKM: $remainingKM, dateOfFuel: $dateOfFuel)';
   }
 
   @override
@@ -69,7 +75,8 @@ class FuelData {
         other.fueledForPrice == fueledForPrice &&
         other.marketpricePerLiter == marketpricePerLiter &&
         other.atKm == atKm &&
-        other.remainingKM == remainingKM;
+        other.remainingKM == remainingKM &&
+        other.dateOfFuel == dateOfFuel;
   }
 
   @override
@@ -78,6 +85,7 @@ class FuelData {
         fueledForPrice.hashCode ^
         marketpricePerLiter.hashCode ^
         atKm.hashCode ^
-        remainingKM.hashCode;
+        remainingKM.hashCode ^
+        dateOfFuel.hashCode;
   }
 }

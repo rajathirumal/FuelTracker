@@ -7,4 +7,12 @@ class FireStoreService {
   Future<void> saveFuelToFirestore(FuelData fuelData) {
     return db.collection("fuels").doc(fuelData.fuelID).set(fuelData.toMap());
   }
+
+  Stream<List<FuelData>> getAllFuelsFromFireStore() {
+    return db.collection("fuels").snapshots().map(
+          (snapshot) => snapshot.docs
+              .map((document) => FuelData.fromMap(document.data()))
+              .toList(),
+        );
+  }
 }

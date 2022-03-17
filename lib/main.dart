@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fuel_tracker/services/authentication.dart';
 import 'package:fuel_tracker/provider/fuelService.dart';
+import 'package:fuel_tracker/services/firebaseServices.dart';
 import 'package:fuel_tracker/src/home/home.dart';
 import 'package:fuel_tracker/src/home/login.dart';
 import 'package:provider/provider.dart';
@@ -17,15 +18,22 @@ class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final fireStoreService = FireStoreService();
     return MultiProvider(
       providers: [
+        // Auth providers
         Provider<AuthenticationService>(
           create: (context) => AuthenticationService(FirebaseAuth.instance),
         ),
-        ChangeNotifierProvider(create: (context) => FuelProvider()),
         StreamProvider(
           create: (context) =>
               context.read<AuthenticationService>().authStateChange,
+          initialData: null,
+        ),
+        // Add fuel providers
+        ChangeNotifierProvider(create: (context) => FuelProvider()),
+        StreamProvider(
+          create: (context) => fireStoreService.getAllFuelsFromFireStore(),
           initialData: null,
         ),
       ],

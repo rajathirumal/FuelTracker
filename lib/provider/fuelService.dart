@@ -44,6 +44,7 @@ class FuelProvider with ChangeNotifier {
       marketpricePerLiter: _marketpricePerLiter,
       atKm: _atKm,
       remainingKM: _remainingKM,
+      dateOfFuel: DateTime.now().toString(),
     );
     _fireSS.saveFuelToFirestore(fuel);
   }

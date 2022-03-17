@@ -54,7 +54,7 @@ class _AddFuelPageState extends State<AddFuelPage> {
             ElevatedButton(
                 onPressed: () {
                   fuelProvider.saveFuelToFireStore();
-                  Navigator.pop(context);
+                  Navigator.of(context).pop();
                 },
                 child: const Text("Save")),
             const SizedBox(height: 10),
