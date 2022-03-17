@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fuel_tracker/models/fuel.dart';
 import 'package:fuel_tracker/src/pages/add_fuel_page.dart';
@@ -48,6 +46,14 @@ class _HomePageState extends State<HomePage> {
                     title: Text(allFuels[index].fueledForPrice.toString()),
                     leading: Text(allFuels[index].atKm.toString()),
                     trailing: Text(allFuels[index].dateOfFuel.split(" ")[0]),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AddFuelPage(allFuels[index]),
+                        ),
+                      );
+                    },
                   );
                 },
               )

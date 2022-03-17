@@ -37,16 +37,31 @@ class FuelProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  saveFuelToFireStore() {
-    var fuel = FuelData(
-      fuelID: uuid.v4(),
+  saveFuelToFireStore(
+      {required fuelID,
+      required fuelforprice,
+      required marketprice,
+      required atkms,
+      required remainingkms,
+      required daterefueld}) {
+    var newfuel = FuelData(
+      fuelID: fuelID,
       fueledForPrice: _fueledForPrice,
       marketpricePerLiter: _marketpricePerLiter,
       atKm: _atKm,
       remainingKM: _remainingKM,
-      dateOfFuel: DateTime.now().toString(),
+      dateOfFuel: daterefueld,
     );
-    _fireSS.saveFuelToFirestore(fuel);
+    print(newfuel.toString());
+    _fireSS.saveFuelToFirestore(newfuel);
+  }
+
+  loadFuel(FuelData? fuel) {
+    _fueledForPrice = fuel!.fueledForPrice;
+    _fuelID = fuel.fuelID;
+    _marketpricePerLiter = fuel.marketpricePerLiter;
+    _atKm = fuel.atKm;
+    _remainingKM = fuel.remainingKM;
   }
 
   removeFuelFromFireStore() {}
