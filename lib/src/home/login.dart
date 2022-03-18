@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fuel_tracker/services/authentication.dart';
-import 'package:fuel_tracker/src/home/home.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
