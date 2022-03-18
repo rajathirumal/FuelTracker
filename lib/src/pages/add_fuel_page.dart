@@ -34,10 +34,11 @@ class _AddFuelPageState extends State<AddFuelPage> {
   @override
   void initState() {
     if (widget.fuel == null) {
-      // fuelForTEC.text = "";
-      // marketPriceTEC.text = "";
-      // atKmTEC.text = "";
-      // remainingKmTEC.text = "";
+      fuelForTEC.text = "";
+      marketPriceTEC.text = "";
+      atKmTEC.text = "";
+      remainingKmTEC.text = "";
+
       //  Future.delayed(Duration.zero, () {
       //   final fuelProvider = Provider.of<FuelProvider>(context, listen: false);
       //   fuelProvider.loadFuel(FuelData());
@@ -126,7 +127,21 @@ class _AddFuelPageState extends State<AddFuelPage> {
               const SizedBox(height: 20.0),
               ElevatedButton(
                 onPressed: () {
-                  if (_fuelFormKey.currentState!.validate()) {}
+                  if (_fuelFormKey.currentState!.validate()) {
+                    fuelProvider.saveFuelToFireStore(
+                      fuelID: widget.fuel == null
+                          ? Uuid().v1()
+                          : widget.fuel!.fuelID,
+                      fuelforprice: fuelForTEC.text,
+                      marketprice: marketPriceTEC.text,
+                      atkms: atKmTEC.text,
+                      remainingkms: remainingKmTEC.text,
+                      datefueld: widget.fuel == null
+                          ? DateTime.now().toString()
+                          : widget.fuel!.dateOfFuel,
+                    );
+                    Navigator.of(context).pop();
+                  }
                 },
                 child: const Text(
                   'Add fuel',

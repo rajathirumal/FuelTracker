@@ -43,14 +43,14 @@ class FuelProvider with ChangeNotifier {
       required marketprice,
       required atkms,
       required remainingkms,
-      required daterefueld}) {
+      required datefueld}) {
     var newfuel = FuelData(
       fuelID: fuelID,
-      fueledForPrice: _fueledForPrice,
-      marketpricePerLiter: _marketpricePerLiter,
-      atKm: _atKm,
-      remainingKM: _remainingKM,
-      dateOfFuel: daterefueld,
+      fueledForPrice: double.parse(fuelforprice),
+      marketpricePerLiter: double.parse(marketprice),
+      atKm: double.parse(atkms),
+      remainingKM: double.parse(remainingkms),
+      dateOfFuel: datefueld,
     );
     print(newfuel.toString());
     _fireSS.saveFuelToFirestore(newfuel);
