@@ -14,63 +14,55 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
+
   final auth = FirebaseAuth.instance;
 
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Login"),
-      ),
+      appBar: AppBar(title: const Text("Login")),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: Column(children: [
-          TextField(
-            keyboardType: TextInputType.emailAddress,
-            decoration: const InputDecoration(hintText: "Email"),
-            controller: emailController,
-          ),
-          TextField(
-            obscureText: true,
-            decoration: const InputDecoration(hintText: "Password"),
-            controller: passController,
-          ),
-          const SizedBox(height: 20.0),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              ElevatedButton(
-                  onPressed: () {
-                    context.read<AuthenticationService>().signIn(
-                          email: emailController.text,
-                          password: passController.text.trim(),
-                        );
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => HomePage(),
-                      ),
-                    );
-                  },
-                  child: const Text("Login")),
-              // ElevatedButton(
-              //   onPressed: () {
-              //     context.read<AuthenticationService>().signUp(
-              //           email: emailController.text,
-              //           password: passController.text.trim(),
-              //         );
-              //     Navigator.pushReplacement(
-              //       context,
-              //       MaterialPageRoute(
-              //         builder: (context) => HomePage(),
-              //       ),
-              //     );
-              //   },
-              //   child: const Text("SignUp"),
-              // )
-            ],
-          ),
-        ]),
+        child: Form(
+          key: _formKey,
+          child: Column(children: [
+            TextFormField(
+              // The validator receives the text that the user has entered.
+              keyboardType: TextInputType.emailAddress,
+              controller: emailController,
+              decoration: const InputDecoration(hintText: "Email"),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please valid email.(Example: user@domain.com)';
+                }
+                return null;
+              },
+            ),
+            TextFormField(
+              obscureText: true,
+              controller: passController,
+              decoration: const InputDecoration(hintText: "Password"),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter password';
+                }
+                return null;
+              },
+            ),
+            const SizedBox(height: 20.0),
+            ElevatedButton(
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  context.read<AuthenticationService>().signIn(
+                      email: emailController.text,
+                      password: passController.text);
+                }
+              },
+              child: const Text('Login'),
+            ),
+          ]),
+        ),
       ),
     );
   }
