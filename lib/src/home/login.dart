@@ -51,7 +51,8 @@ class _LoginScreenState extends State<LoginScreen> {
               },
             ),
             const SizedBox(height: 20.0),
-            ElevatedButton(
+            ElevatedButton.icon(
+              icon: const Icon(Icons.login, color: Colors.white),
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                   context.read<AuthenticationService>().signIn(
@@ -59,7 +60,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       password: passController.text);
                 }
               },
-              child: const Text('Login'),
+              label: const Text(
+                'Login',
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
             ),
           ]),
         ),
