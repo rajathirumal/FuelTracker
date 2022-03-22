@@ -1,6 +1,6 @@
 # Fuel Tracker
 
-Applicatioj to replace note paper logging of fuel consumption by your vehicle. 🚗🏍️🛵
+Application to replace note paper logging of fuel consumption by your vehicle. 🚗🏍️🛵
 
 Have the additional features such as insights and refuel tracking. 📉📊
 
