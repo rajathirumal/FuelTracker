@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:fuel_tracker/services/authentication.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:fuel_tracker/services/extension.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -30,11 +31,22 @@ class _HomePageState extends State<HomePage> {
       ],
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Fuel Tracker"),
+          title: Text(
+            "Welcome " +
+                FirebaseAuth.instance.currentUser!.email
+                    .toString()
+                    .split('@')
+                    .first
+                    .inCaps,
+            style: const TextStyle(color: Colors.white),
+          ),
           actions: [
             IconButton(
               onPressed: () => context.read<AuthenticationService>().signOut(),
-              icon: const Icon(Icons.logout),
+              icon: const Icon(
+                Icons.logout,
+                color: Colors.white,
+              ),
             )
           ],
         ),
