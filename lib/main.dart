@@ -7,6 +7,7 @@ import 'package:fuel_tracker/services/firebaseServices.dart';
 import 'package:fuel_tracker/src/home/home.dart';
 import 'package:fuel_tracker/src/home/login.dart';
 import 'package:provider/provider.dart';
+import 'package:fuel_tracker/src/helpers/project.properties.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,7 +42,12 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primarySwatch: Colors.lightBlue,
+          scaffoldBackgroundColor: Colors.purple[50],
+          appBarTheme: AppBarTheme(
+              backgroundColor: ColorProjectProperty().actionColor,
+              titleTextStyle: const TextStyle(color: Colors.white),
+              elevation: 20.0),
+          primarySwatch: ColorProjectProperty().actionColor,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: const AuthenticationWrapper(),

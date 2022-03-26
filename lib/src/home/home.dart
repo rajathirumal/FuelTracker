@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:fuel_tracker/services/authentication.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:fuel_tracker/services/extension.dart';
+import 'package:fuel_tracker/src/helpers/extension.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
                     .split('@')
                     .first
                     .inCaps,
-            style: const TextStyle(color: Colors.white),
+            // style: const TextStyle(color: Colors.white),
           ),
           actions: [
             IconButton(
