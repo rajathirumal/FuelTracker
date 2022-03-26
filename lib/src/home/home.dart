@@ -32,13 +32,15 @@ class _HomePageState extends State<HomePage> {
       ],
       child: Scaffold(
         appBar: AppBar(
-          title: Text(
-            "Welcome " +
-                FirebaseAuth.instance.currentUser!.email
-                    .toString()
-                    .split('@')
-                    .first
-                    .inCaps,
+          title: FittedBox(
+            child: Text(
+              "Welcome " +
+                  FirebaseAuth.instance.currentUser!.email
+                      .toString()
+                      .split('@')
+                      .first
+                      .inCaps,
+            ),
           ),
           actions: [
             IconButton(

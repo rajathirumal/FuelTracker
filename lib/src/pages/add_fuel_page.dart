@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'dart:ffi';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fuel_tracker/models/fuel.dart';
 import 'package:fuel_tracker/provider/fuelProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:fuel_tracker/src/helpers/extension.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
@@ -63,12 +65,19 @@ class _AddFuelPageState extends State<AddFuelPage> {
     final _fuelFormKey = GlobalKey<FormState>();
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "ADD FUEL",
-          style: TextStyle(
-            color: Colors.white70,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 3,
+        title: FittedBox(
+          child: Text(
+            "ADD FUEL - " +
+                FirebaseAuth.instance.currentUser!.email
+                    .toString()
+                    .split('@')
+                    .first
+                    .inCaps,
+            style: const TextStyle(
+              color: Colors.white70,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 3,
+            ),
           ),
         ),
         centerTitle: true,
