@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fuel_tracker/models/fuel.dart';
 import 'package:fuel_tracker/src/pages/add_fuel_page.dart';
+import 'package:fuel_tracker/src/pages/analytics.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:fuel_tracker/services/authentication.dart';
@@ -38,7 +39,6 @@ class _HomePageState extends State<HomePage> {
                     .split('@')
                     .first
                     .inCaps,
-            // style: const TextStyle(color: Colors.white),
           ),
           actions: [
             IconButton(
@@ -100,29 +100,33 @@ class _HomePageState extends State<HomePage> {
               child: const Icon(Icons.analytics_outlined),
               label: "Analytics",
               onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: Row(
-                    children: const [
-                      Text(
-                        "Please wait while fetchinf data",
-                        style: TextStyle(fontSize: 15),
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      CircularProgressIndicator(
-                        color: Colors.amber,
-                        backgroundColor: Colors.white,
-                        strokeWidth: 2,
-                      ),
-                    ],
-                  ),
-                  action: SnackBarAction(
-                    label: "ok",
-                    onPressed: () {},
-                  ),
-                  duration: const Duration(seconds: 2),
-                ));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Analytics()),
+                );
+                // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                //   content: Row(
+                //     children: const [
+                //       Text(
+                //         "Please wait while fetchinf data",
+                //         style: TextStyle(fontSize: 15),
+                //       ),
+                //       SizedBox(
+                //         width: 20,
+                //       ),
+                //       CircularProgressIndicator(
+                //         color: Colors.amber,
+                //         backgroundColor: Colors.white,
+                //         strokeWidth: 2,
+                //       ),
+                //     ],
+                //   ),
+                //   action: SnackBarAction(
+                //     label: "ok",
+                //     onPressed: () {},
+                //   ),
+                //   duration: const Duration(seconds: 2),
+                // ));
               },
             ),
           ],
