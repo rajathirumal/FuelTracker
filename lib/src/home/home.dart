@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
                   );
                 },
               )
-            : Center(child: CircularProgressIndicator.adaptive()),
+            : const Center(child: CircularProgressIndicator.adaptive()),
 
         floatingActionButton: SpeedDial(
           animatedIcon: AnimatedIcons.list_view,
@@ -86,7 +86,7 @@ class _HomePageState extends State<HomePage> {
             ),
             SpeedDialChild(
               child: const Icon(Icons.analytics_outlined),
-              label: "Add new fuel",
+              label: "Analytics",
               onTap: () {
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: Row(
