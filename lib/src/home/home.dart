@@ -70,7 +70,6 @@ class _HomePageState extends State<HomePage> {
                 },
               )
             : const Center(child: CircularProgressIndicator.adaptive()),
-
         floatingActionButton: SpeedDial(
           animatedIcon: AnimatedIcons.list_view,
           overlayOpacity: 0.4,
@@ -131,16 +130,6 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-
-        // floatingActionButton: FloatingActionButton(
-        //   child: const Icon(
-        //     Icons.add,
-        //     color: Colors.red,
-        //     size: 40,
-        //   ),
-        //   onPressed: () {},
-        // ),
-        // floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       ),
     );
   }
