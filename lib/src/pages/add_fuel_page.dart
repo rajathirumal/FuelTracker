@@ -1,6 +1,3 @@
-import 'dart:async';
-import 'dart:ffi';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fuel_tracker/models/fuel.dart';
 import 'package:fuel_tracker/provider/fuelProvider.dart';
