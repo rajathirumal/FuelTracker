@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
           appBarTheme: AppBarTheme(
               backgroundColor: ColorProjectProperty().actionColor,
               titleTextStyle: const TextStyle(color: Colors.white),
-              elevation: 20.0),
+              elevation: 5.0),
           primarySwatch: ColorProjectProperty().actionColor,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
