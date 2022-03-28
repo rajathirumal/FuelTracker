@@ -95,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter password';
-                        } else if (value.length <= 6) {
+                        } else if (value.length < 6) {
                           return "Password should be atlest 6 charecters";
                         }
                         return null;
