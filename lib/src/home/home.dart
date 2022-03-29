@@ -5,7 +5,6 @@ import 'package:fuel_tracker/src/pages/analytics.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:fuel_tracker/services/authentication.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:fuel_tracker/src/helpers/extension.dart';
 
 class HomePage extends StatefulWidget {
@@ -50,7 +49,7 @@ class _HomePageState extends State<HomePage> {
           actions: [
             IconButton(
               onPressed: () => Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => AddFuelPage())),
+                  MaterialPageRoute(builder: (context) => const AddFuelPage())),
               icon: const Icon(
                 Icons.add,
                 size: 30,
@@ -61,8 +60,10 @@ class _HomePageState extends State<HomePage> {
               onSelected: (value) {
                 switch (value) {
                   case MenuOptions.analytics:
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Analytics()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Analytics()));
                     break;
                   case MenuOptions.logout:
                     context.read<AuthenticationService>().signOut();
@@ -150,7 +151,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Text(
                         fuel[index].dateOfFuel.split(" ")[0].toString(),
-                        style: TextStyle(fontSize: 15),
+                        style: const TextStyle(fontSize: 15),
                       ),
                       const Spacer(),
                       const Text(
@@ -162,7 +163,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Text(
                         fuel[index].fueledForPrice.toString() + " ₹",
-                        style: TextStyle(fontSize: 15),
+                        style: const TextStyle(fontSize: 15),
                       ),
                     ],
                   ),
@@ -181,7 +182,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Text(
                         fuel[index].atKm.toString(),
-                        style: TextStyle(fontSize: 15),
+                        style: const TextStyle(fontSize: 15),
                       ),
                       const Spacer(),
                       const Text(
@@ -193,7 +194,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Text(
                         fuel[index].marketpricePerLiter.toString() + " ₹",
-                        style: TextStyle(fontSize: 15),
+                        style: const TextStyle(fontSize: 15),
                       ),
                     ],
                   ),
@@ -212,7 +213,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Text(
                         fuel[index].remainingKM.toString() + " Km",
-                        style: TextStyle(fontSize: 15),
+                        style: const TextStyle(fontSize: 15),
                       ),
                       const Spacer(),
                       GestureDetector(

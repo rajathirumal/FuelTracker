@@ -9,7 +9,7 @@ import 'package:uuid/uuid.dart';
 class AddFuelPage extends StatefulWidget {
   // const AddFuelPage({Key? key}) : super(key: key);
   final FuelData? fuel;
-  AddFuelPage([this.fuel]);
+  const AddFuelPage([this.fuel]);
 
   @override
   State<AddFuelPage> createState() => _AddFuelPageState();
@@ -136,7 +136,7 @@ class _AddFuelPageState extends State<AddFuelPage> {
                   if (_fuelFormKey.currentState!.validate()) {
                     fuelProvider.saveFuelToFireStore(
                       fuelID: widget.fuel == null
-                          ? Uuid().v1()
+                          ? const Uuid().v1()
                           : widget.fuel!.fuelID,
                       fuelforprice: fuelForTEC.text,
                       marketprice: marketPriceTEC.text,

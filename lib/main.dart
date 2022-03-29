@@ -12,11 +12,11 @@ import 'package:fuel_tracker/src/helpers/project.properties.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -78,9 +78,9 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
   Widget build(BuildContext context) {
     final firebaseuser = context.watch<User?>();
     if (firebaseuser != null) {
-      return HomePage();
+      return const HomePage();
     } else {
-      return LoginScreen();
+      return const LoginScreen();
     }
   }
 }
