@@ -5,7 +5,6 @@ import 'package:fuel_tracker/src/pages/analytics.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:fuel_tracker/services/authentication.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:fuel_tracker/src/helpers/extension.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,6 +12,11 @@ class HomePage extends StatefulWidget {
 
   @override
   State<HomePage> createState() => _HomePageState();
+}
+
+enum MenuOptions {
+  analytics,
+  logout,
 }
 
 class _HomePageState extends State<HomePage> {
@@ -44,12 +48,61 @@ class _HomePageState extends State<HomePage> {
           ),
           actions: [
             IconButton(
-              onPressed: () => context.read<AuthenticationService>().signOut(),
+              onPressed: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const AddFuelPage())),
               icon: const Icon(
-                Icons.logout,
+                Icons.add,
+                size: 30,
                 color: Colors.white,
               ),
-            )
+            ),
+            PopupMenuButton<MenuOptions>(
+              onSelected: (value) {
+                switch (value) {
+                  case MenuOptions.analytics:
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Analytics()));
+                    break;
+                  case MenuOptions.logout:
+                    context.read<AuthenticationService>().signOut();
+                    break;
+                  default:
+                }
+              },
+              itemBuilder: (BuildContext context) {
+                return <PopupMenuEntry<MenuOptions>>[
+                  PopupMenuItem(
+                    value: MenuOptions.analytics,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: const [
+                        Icon(
+                          Icons.analytics_outlined,
+                          color: Colors.black,
+                        ),
+                        Text("Analysis"),
+                      ],
+                    ),
+                  ),
+                  const PopupMenuDivider(height: 1),
+                  PopupMenuItem(
+                    value: MenuOptions.logout,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: const [
+                        Icon(
+                          Icons.logout,
+                          color: Colors.black,
+                        ),
+                        Text("Logout"),
+                      ],
+                    ),
+                  ),
+                ];
+              },
+            ),
           ],
         ),
         body: (allFuels != null)
@@ -58,66 +111,6 @@ class _HomePageState extends State<HomePage> {
                 itemBuilder: (context, index) => fuelCard(allFuels, index),
               )
             : const Center(child: CircularProgressIndicator.adaptive()),
-        floatingActionButton: SpeedDial(
-          animatedIcon: AnimatedIcons.list_view,
-          overlayOpacity: 0.4,
-          spacing: 12,
-          spaceBetweenChildren: 10,
-          children: [
-            SpeedDialChild(
-              child: const Icon(Icons.add),
-              label: "Add new fuel",
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AddFuelPage()));
-                // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                //   content: const Text(
-                //     "Addind fuel",
-                //     style: TextStyle(fontSize: 15),
-                //   ),
-                //   action: SnackBarAction(
-                //     label: "ok",
-                //     onPressed: () {},
-                //   ),
-                //   duration: const Duration(seconds: 2),
-                // ));
-              },
-            ),
-            SpeedDialChild(
-              child: const Icon(Icons.analytics_outlined),
-              label: "Analytics",
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Analytics()),
-                );
-                // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                //   content: Row(
-                //     children: const [
-                //       Text(
-                //         "Please wait while fetchinf data",
-                //         style: TextStyle(fontSize: 15),
-                //       ),
-                //       SizedBox(
-                //         width: 20,
-                //       ),
-                //       CircularProgressIndicator(
-                //         color: Colors.amber,
-                //         backgroundColor: Colors.white,
-                //         strokeWidth: 2,
-                //       ),
-                //     ],
-                //   ),
-                //   action: SnackBarAction(
-                //     label: "ok",
-                //     onPressed: () {},
-                //   ),
-                //   duration: const Duration(seconds: 2),
-                // ));
-              },
-            ),
-          ],
-        ),
       ),
     );
   }
@@ -158,7 +151,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Text(
                         fuel[index].dateOfFuel.split(" ")[0].toString(),
-                        style: TextStyle(fontSize: 15),
+                        style: const TextStyle(fontSize: 15),
                       ),
                       const Spacer(),
                       const Text(
@@ -170,13 +163,12 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Text(
                         fuel[index].fueledForPrice.toString() + " ₹",
-                        style: TextStyle(fontSize: 15),
+                        style: const TextStyle(fontSize: 15),
                       ),
                     ],
                   ),
                   const Divider(
                     thickness: 0.5,
-                    color: Colors.blueGrey,
                   ),
                   // Row 2
                   Row(
@@ -190,7 +182,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Text(
                         fuel[index].atKm.toString(),
-                        style: TextStyle(fontSize: 15),
+                        style: const TextStyle(fontSize: 15),
                       ),
                       const Spacer(),
                       const Text(
@@ -202,13 +194,12 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Text(
                         fuel[index].marketpricePerLiter.toString() + " ₹",
-                        style: TextStyle(fontSize: 15),
+                        style: const TextStyle(fontSize: 15),
                       ),
                     ],
                   ),
                   const Divider(
                     thickness: 0.5,
-                    color: Colors.blueGrey,
                   ),
                   // Row 3
                   Row(
@@ -222,7 +213,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Text(
                         fuel[index].remainingKM.toString() + " Km",
-                        style: TextStyle(fontSize: 15),
+                        style: const TextStyle(fontSize: 15),
                       ),
                       const Spacer(),
                       GestureDetector(

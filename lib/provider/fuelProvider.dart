@@ -5,12 +5,11 @@ import 'package:uuid/uuid.dart';
 
 class FuelProvider with ChangeNotifier {
   final _fireSS = FireStoreService();
-  String _fuelID = "";
   double _fueledForPrice = 0.0;
   double _marketpricePerLiter = 0.0;
   double _atKm = 0.0;
   double _remainingKM = 0.0;
-  var uuid = Uuid();
+  var uuid = const Uuid();
 
   double get fueledForPrice => _fueledForPrice;
   double get marketPrice => _marketpricePerLiter;
@@ -52,13 +51,12 @@ class FuelProvider with ChangeNotifier {
       remainingKM: double.parse(remainingkms),
       dateOfFuel: datefueld,
     );
-    print(newfuel.toString());
+
     _fireSS.saveFuelToFirestore(newfuel);
   }
 
   loadFuel(FuelData? fuel) {
     _fueledForPrice = fuel!.fueledForPrice;
-    _fuelID = fuel.fuelID;
     _marketpricePerLiter = fuel.marketpricePerLiter;
     _atKm = fuel.atKm;
     _remainingKM = fuel.remainingKM;

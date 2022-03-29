@@ -16,4 +16,3 @@ Have the additional features such as insights and refuel tracking. 📉📊
 |cloud_firestore| ^3.1.10| Interact with firestore |
 | provider | ^6.0.2| State management |
 |uuid| ^3.0.6| Creation of unique ID |
-|flutter_speed_dial | ^5.0.0+1| Cool FAB|
