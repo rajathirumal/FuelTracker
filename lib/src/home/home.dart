@@ -15,6 +15,11 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
+enum MenuOptions {
+  analytics,
+  logout,
+}
+
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
@@ -44,12 +49,59 @@ class _HomePageState extends State<HomePage> {
           ),
           actions: [
             IconButton(
-              onPressed: () => context.read<AuthenticationService>().signOut(),
+              onPressed: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => AddFuelPage())),
               icon: const Icon(
-                Icons.logout,
+                Icons.add,
+                size: 30,
                 color: Colors.white,
               ),
-            )
+            ),
+            PopupMenuButton<MenuOptions>(
+              onSelected: (value) {
+                switch (value) {
+                  case MenuOptions.analytics:
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Analytics()));
+                    break;
+                  case MenuOptions.logout:
+                    context.read<AuthenticationService>().signOut();
+                    break;
+                  default:
+                }
+              },
+              itemBuilder: (BuildContext context) {
+                return <PopupMenuEntry<MenuOptions>>[
+                  PopupMenuItem(
+                    value: MenuOptions.analytics,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: const [
+                        Icon(
+                          Icons.analytics_outlined,
+                          color: Colors.black,
+                        ),
+                        Text("Analysis"),
+                      ],
+                    ),
+                  ),
+                  const PopupMenuDivider(height: 1),
+                  PopupMenuItem(
+                    value: MenuOptions.logout,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: const [
+                        Icon(
+                          Icons.logout,
+                          color: Colors.black,
+                        ),
+                        Text("Logout"),
+                      ],
+                    ),
+                  ),
+                ];
+              },
+            ),
           ],
         ),
         body: (allFuels != null)
@@ -58,66 +110,6 @@ class _HomePageState extends State<HomePage> {
                 itemBuilder: (context, index) => fuelCard(allFuels, index),
               )
             : const Center(child: CircularProgressIndicator.adaptive()),
-        floatingActionButton: SpeedDial(
-          animatedIcon: AnimatedIcons.list_view,
-          overlayOpacity: 0.4,
-          spacing: 12,
-          spaceBetweenChildren: 10,
-          children: [
-            SpeedDialChild(
-              child: const Icon(Icons.add),
-              label: "Add new fuel",
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AddFuelPage()));
-                // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                //   content: const Text(
-                //     "Addind fuel",
-                //     style: TextStyle(fontSize: 15),
-                //   ),
-                //   action: SnackBarAction(
-                //     label: "ok",
-                //     onPressed: () {},
-                //   ),
-                //   duration: const Duration(seconds: 2),
-                // ));
-              },
-            ),
-            SpeedDialChild(
-              child: const Icon(Icons.analytics_outlined),
-              label: "Analytics",
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Analytics()),
-                );
-                // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                //   content: Row(
-                //     children: const [
-                //       Text(
-                //         "Please wait while fetchinf data",
-                //         style: TextStyle(fontSize: 15),
-                //       ),
-                //       SizedBox(
-                //         width: 20,
-                //       ),
-                //       CircularProgressIndicator(
-                //         color: Colors.amber,
-                //         backgroundColor: Colors.white,
-                //         strokeWidth: 2,
-                //       ),
-                //     ],
-                //   ),
-                //   action: SnackBarAction(
-                //     label: "ok",
-                //     onPressed: () {},
-                //   ),
-                //   duration: const Duration(seconds: 2),
-                // ));
-              },
-            ),
-          ],
-        ),
       ),
     );
   }
@@ -176,7 +168,6 @@ class _HomePageState extends State<HomePage> {
                   ),
                   const Divider(
                     thickness: 0.5,
-                    color: Colors.blueGrey,
                   ),
                   // Row 2
                   Row(
@@ -208,7 +199,6 @@ class _HomePageState extends State<HomePage> {
                   ),
                   const Divider(
                     thickness: 0.5,
-                    color: Colors.blueGrey,
                   ),
                   // Row 3
                   Row(

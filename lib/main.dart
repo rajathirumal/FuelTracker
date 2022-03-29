@@ -44,9 +44,19 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           scaffoldBackgroundColor: Colors.purple[50],
           appBarTheme: AppBarTheme(
-              backgroundColor: ColorProjectProperty().actionColor,
-              titleTextStyle: const TextStyle(color: Colors.white),
-              elevation: 5.0),
+            backgroundColor: ColorProjectProperty().actionColor,
+            titleTextStyle: const TextStyle(color: Colors.white),
+            elevation: 5.0,
+          ),
+          popupMenuTheme: PopupMenuThemeData(
+            color: ColorProjectProperty().backGroundColor,
+            textStyle: const TextStyle(
+              color: Colors.black,
+              fontSize: 15,
+            ),
+            elevation: 20,
+          ),
+          dividerColor: Colors.blueGrey,
           primarySwatch: ColorProjectProperty().actionColor,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
