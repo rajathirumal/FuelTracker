@@ -37,21 +37,12 @@ class _AddFuelPageState extends State<AddFuelPage> {
       marketPriceTEC.text = "";
       atKmTEC.text = "";
       remainingKmTEC.text = "";
-
-      //  Future.delayed(Duration.zero, () {
-      //   final fuelProvider = Provider.of<FuelProvider>(context, listen: false);
-      //   fuelProvider.loadFuel(FuelData());
-      // });
+      super.initState();
     } else {
       fuelForTEC.text = widget.fuel!.fueledForPrice.toString();
       marketPriceTEC.text = widget.fuel!.marketpricePerLiter.toString();
       atKmTEC.text = widget.fuel!.atKm.toString();
       remainingKmTEC.text = widget.fuel!.remainingKM.toString();
-
-      // Future.delayed(Duration.zero, () {
-      //   final fuelProvider = Provider.of<FuelProvider>(context, listen: false);
-      //   fuelProvider.loadFuel(widget.fuel);
-      // });
     }
     super.initState();
   }
