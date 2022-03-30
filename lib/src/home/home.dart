@@ -181,7 +181,7 @@ class _HomePageState extends State<HomePage> {
                         width: 10,
                       ),
                       Text(
-                        fuel[index].atKm.toString(),
+                        fuel[index].atKm.round().toString() + " Km",
                         style: const TextStyle(fontSize: 15),
                       ),
                       const Spacer(),
@@ -212,7 +212,7 @@ class _HomePageState extends State<HomePage> {
                         width: 10,
                       ),
                       Text(
-                        fuel[index].remainingKM.toString() + " Km",
+                        fuel[index].remainingKM.round().toString() + " Km",
                         style: const TextStyle(fontSize: 15),
                       ),
                       const Spacer(),
