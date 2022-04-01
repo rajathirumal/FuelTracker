@@ -22,6 +22,8 @@ enum MenuOptions {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     final allFuels = Provider.of<List<FuelData>?>(context);
     return MultiProvider(
       providers: [
@@ -106,16 +108,137 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         body: (allFuels != null)
-            ? ListView.builder(
-                itemCount: allFuels.length,
-                itemBuilder: (context, index) => fuelCard(allFuels, index),
+            ? OrientationBuilder(
+                builder: (context, orientation) {
+                  if (orientation == Orientation.portrait) {
+                    return ListView.builder(
+                      itemCount: allFuels.length,
+                      itemBuilder: (context, index) =>
+                          fuelCardPortrait(allFuels, index),
+                    );
+                  } else {
+                    return GridView.builder(
+                      itemCount: allFuels.length,
+                      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                        maxCrossAxisExtent: screenWidth / 2,
+                      ),
+                      itemBuilder: (context, index) =>
+                          fuelCardPortrait(allFuels, index),
+                    );
+                  }
+                },
               )
             : const Center(child: CircularProgressIndicator.adaptive()),
       ),
     );
   }
 
-  Widget fuelCard(List<FuelData> fuel, int index) {
+  // Widget fuelCardLandscape(List<FuelData> fuel, int index) {
+  //   return Padding(
+  //     padding: const EdgeInsets.all(10.0),
+  //     child: Card(
+  //       child: Column(
+  //         crossAxisAlignment: CrossAxisAlignment.center,
+  //         children: [
+  //           // Row 1
+  //           Row(
+  //             children: [
+  //               const Text(
+  //                 "Fuel Date:",
+  //                 style: TextStyle(fontSize: 15),
+  //               ),
+  //               const SizedBox(
+  //                 width: 10,
+  //               ),
+  //               Text(
+  //                 fuel[index].dateOfFuel.split(" ")[0].toString(),
+  //                 style: const TextStyle(fontSize: 15),
+  //               ),
+  //               const Spacer(),
+  //               const Text(
+  //                 "Spet:",
+  //                 style: TextStyle(fontSize: 15),
+  //               ),
+  //               const SizedBox(
+  //                 width: 10,
+  //               ),
+  //               Text(
+  //                 fuel[index].fueledForPrice.toString() + " ₹",
+  //                 style: const TextStyle(fontSize: 15),
+  //               ),
+  //             ],
+  //           ),
+  //           const Divider(
+  //             thickness: 0.5,
+  //           ),
+  //           // Row 2
+  //           Row(
+  //             children: [
+  //               const Text(
+  //                 "Oodometer:",
+  //                 style: TextStyle(fontSize: 15),
+  //               ),
+  //               const SizedBox(
+  //                 width: 10,
+  //               ),
+  //               Text(
+  //                 fuel[index].atKm.round().toString() + " Km",
+  //                 style: const TextStyle(fontSize: 15),
+  //               ),
+  //               const Spacer(),
+  //               const Text(
+  //                 "Market price:",
+  //                 style: TextStyle(fontSize: 15),
+  //               ),
+  //               const SizedBox(
+  //                 width: 10,
+  //               ),
+  //               Text(
+  //                 fuel[index].marketpricePerLiter.toString() + " ₹",
+  //                 style: const TextStyle(fontSize: 15),
+  //               ),
+  //             ],
+  //           ),
+  //           const Divider(
+  //             thickness: 0.5,
+  //           ),
+  //           // Row 3
+  //           Row(
+  //             children: [
+  //               const Text(
+  //                 "Remaining",
+  //                 style: TextStyle(fontSize: 15),
+  //               ),
+  //               const SizedBox(
+  //                 width: 10,
+  //               ),
+  //               Text(
+  //                 fuel[index].remainingKM.round().toString() + " Km",
+  //                 style: const TextStyle(fontSize: 15),
+  //               ),
+  //               const Spacer(),
+  //               GestureDetector(
+  //                 onTap: () {
+  //                   Navigator.push(
+  //                     context,
+  //                     MaterialPageRoute(
+  //                       builder: (context) => AddFuelPage(fuel[index]),
+  //                     ),
+  //                   );
+  //                 },
+  //                 child: Row(children: const [
+  //                   Icon(Icons.edit, color: Colors.black54),
+  //                 ]),
+  //               )
+  //             ],
+  //           ),
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
+
+  Widget fuelCardPortrait(List<FuelData> fuel, int index) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: GestureDetector(
