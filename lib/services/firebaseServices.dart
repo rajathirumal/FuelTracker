@@ -11,7 +11,11 @@ class FireStoreService {
   }
 
   Stream<List<FuelData>> getAllFuelsFromFireStore() {
-    return db.collection("fuels").snapshots().map(
+    return db
+        .collection("fuels")
+        .orderBy("dateOfFuel", descending: true)
+        .snapshots()
+        .map(
           (snapshot) => snapshot.docs
               .map((document) => FuelData.fromMap(document.data()))
               .toList(),
