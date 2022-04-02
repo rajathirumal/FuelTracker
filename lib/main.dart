@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: Colors.purple[50],
           appBarTheme: AppBarTheme(
             backgroundColor: ColorProjectProperty().actionColor,
-            titleTextStyle: const TextStyle(color: Colors.white),
+            titleTextStyle: ColorProjectProperty().titleTextColor,
             elevation: 5.0,
           ),
           popupMenuTheme: PopupMenuThemeData(
