@@ -117,14 +117,25 @@ class _HomePageState extends State<HomePage> {
                           fuelCardPortrait(allFuels, index),
                     );
                   } else {
-                    return GridView.builder(
-                      itemCount: allFuels.length,
-                      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: screenWidth / 2,
-                      ),
-                      itemBuilder: (context, index) =>
-                          fuelCardPortrait(allFuels, index),
+                    return Row(
+                      children: [
+                        Expanded(
+                          child: ListView.builder(
+                              itemCount: allFuels.length,
+                              itemBuilder: (context, index) => (index % 2 == 0)
+                                  ? fuelCardPortrait(allFuels, index)
+                                  : const SizedBox()),
+                        ),
+                        Expanded(
+                          child: ListView.builder(
+                              itemCount: allFuels.length,
+                              itemBuilder: (context, index) => (index % 2 != 0)
+                                  ? fuelCardPortrait(allFuels, index)
+                                  : const SizedBox()),
+                        ),
+                      ],
                     );
+                    ;
                   }
                 },
               )
