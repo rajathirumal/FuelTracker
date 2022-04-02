@@ -119,122 +119,125 @@ class _HomePageState extends State<HomePage> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: GestureDetector(
-          onLongPress: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => AddFuelPage(fuel[index]),
-              ),
-            );
-          },
-          child: Card(
-            elevation: 8.0,
-            color: Colors.purple[100],
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8.0),
+        onLongPress: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AddFuelPage(fuel[index]),
             ),
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  // Row 1
-                  Row(
-                    children: [
-                      const Text(
-                        "Fuel Date:",
-                        style: TextStyle(fontSize: 15),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        fuel[index].dateOfFuel.split(" ")[0].toString(),
-                        style: const TextStyle(fontSize: 15),
-                      ),
-                      const Spacer(),
-                      const Text(
-                        "Spet:",
-                        style: TextStyle(fontSize: 15),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        fuel[index].fueledForPrice.toString() + " ₹",
-                        style: const TextStyle(fontSize: 15),
-                      ),
-                    ],
-                  ),
-                  const Divider(
-                    thickness: 0.5,
-                  ),
-                  // Row 2
-                  Row(
-                    children: [
-                      const Text(
-                        "Oodometer:",
-                        style: TextStyle(fontSize: 15),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        fuel[index].atKm.toString(),
-                        style: const TextStyle(fontSize: 15),
-                      ),
-                      const Spacer(),
-                      const Text(
-                        "Market price:",
-                        style: TextStyle(fontSize: 15),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        fuel[index].marketpricePerLiter.toString() + " ₹",
-                        style: const TextStyle(fontSize: 15),
-                      ),
-                    ],
-                  ),
-                  const Divider(
-                    thickness: 0.5,
-                  ),
-                  // Row 3
-                  Row(
-                    children: [
-                      const Text(
-                        "Remaining",
-                        style: TextStyle(fontSize: 15),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        fuel[index].remainingKM.toString() + " Km",
-                        style: const TextStyle(fontSize: 15),
-                      ),
-                      const Spacer(),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => AddFuelPage(fuel[index]),
-                            ),
-                          );
-                        },
-                        child: Row(children: const [
+          );
+        },
+        child: Card(
+          elevation: 8.0,
+          color: Colors.purple[100],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          child: Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                // Row 1
+                Row(
+                  children: [
+                    const Text(
+                      "Fuel Date:",
+                      style: TextStyle(fontSize: 15),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      fuel[index].dateOfFuel.split(" ")[0].toString(),
+                      style: const TextStyle(fontSize: 15),
+                    ),
+                    const Spacer(),
+                    const Text(
+                      "Spet:",
+                      style: TextStyle(fontSize: 15),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      fuel[index].fueledForPrice.toString() + " ₹",
+                      style: const TextStyle(fontSize: 15),
+                    ),
+                  ],
+                ),
+                const Divider(
+                  thickness: 0.5,
+                ),
+                // Row 2
+                Row(
+                  children: [
+                    const Text(
+                      "Oodometer:",
+                      style: TextStyle(fontSize: 15),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      fuel[index].atKm.toString(),
+                      style: const TextStyle(fontSize: 15),
+                    ),
+                    const Spacer(),
+                    const Text(
+                      "Market price:",
+                      style: TextStyle(fontSize: 15),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      fuel[index].marketpricePerLiter.toString() + " ₹",
+                      style: const TextStyle(fontSize: 15),
+                    ),
+                  ],
+                ),
+                const Divider(
+                  thickness: 0.5,
+                ),
+                // Row 3
+                Row(
+                  children: [
+                    const Text(
+                      "Remaining",
+                      style: TextStyle(fontSize: 15),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      fuel[index].remainingKM.toString() + " Km",
+                      style: const TextStyle(fontSize: 15),
+                    ),
+                    const Spacer(),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AddFuelPage(fuel[index]),
+                          ),
+                        );
+                      },
+                      child: Row(
+                        children: const [
                           Icon(Icons.edit, color: Colors.black54),
-                        ]),
-                      )
-                    ],
-                  ),
-                ],
-              ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ],
             ),
-          )),
+          ),
+        ),
+      ),
     );
   }
 }
