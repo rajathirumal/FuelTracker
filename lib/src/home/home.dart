@@ -255,7 +255,7 @@ class _HomePageState extends State<HomePage> {
                       },
                       child: Row(
                         children: const [
-                          Icon(Icons.edit, color: Colors.black54),
+                          Icon(Icons.edit, color: Colors.purple),
                         ],
                       ),
                     )
