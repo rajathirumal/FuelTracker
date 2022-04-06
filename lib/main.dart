@@ -44,12 +44,13 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           scaffoldBackgroundColor: Colors.purple[50],
           appBarTheme: AppBarTheme(
-            backgroundColor: ColorProjectProperty().actionColor,
-            titleTextStyle: ColorProjectProperty().titleTextColor,
-            elevation: 5.0,
+            backgroundColor: MyAppThemeProperties().backGroundColor,
+            titleTextStyle: MyAppThemeProperties().titleTextColor,
+            elevation: 0.0,
+            iconTheme: IconThemeData(color: Colors.black),
           ),
           popupMenuTheme: PopupMenuThemeData(
-            color: ColorProjectProperty().backGroundColor,
+            color: MyAppThemeProperties().backGroundColor,
             textStyle: const TextStyle(
               color: Colors.black,
               fontSize: 15,
@@ -57,7 +58,7 @@ class MyApp extends StatelessWidget {
             elevation: 20,
           ),
           dividerColor: Colors.blueGrey,
-          primarySwatch: ColorProjectProperty().actionColor,
+          primarySwatch: MyAppThemeProperties().actionColor,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: const AuthenticationWrapper(),

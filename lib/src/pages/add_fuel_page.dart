@@ -54,17 +54,12 @@ class _AddFuelPageState extends State<AddFuelPage> {
       appBar: AppBar(
         title: FittedBox(
           child: Text(
-            "ADD FUEL - " +
+            "Add fuel - " +
                 FirebaseAuth.instance.currentUser!.email
                     .toString()
                     .split('@')
                     .first
                     .inCaps,
-            style: const TextStyle(
-              color: Colors.white70,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 3,
-            ),
           ),
         ),
         centerTitle: true,
