@@ -55,7 +55,6 @@ class _HomePageState extends State<HomePage> {
               icon: const Icon(
                 Icons.add,
                 size: 30,
-                color: Colors.white,
               ),
             ),
             PopupMenuButton<MenuOptions>(
@@ -261,7 +260,7 @@ class _HomePageState extends State<HomePage> {
                       },
                       child: Row(
                         children: const [
-                          Icon(Icons.edit, color: Colors.black54),
+                          Icon(Icons.edit, color: Colors.purple),
                         ],
                       ),
                     )
