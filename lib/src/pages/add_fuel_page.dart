@@ -161,6 +161,7 @@ class _AddFuelPageState extends State<AddFuelPage> {
             ),
           ),
         ),
+        physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
       ),
     );
   }
