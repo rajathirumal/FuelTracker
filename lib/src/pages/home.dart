@@ -109,6 +109,8 @@ class _HomePageState extends State<HomePage> {
                 builder: (context, orientation) {
                   if (orientation == Orientation.portrait) {
                     return ListView.builder(
+                      physics: const BouncingScrollPhysics(
+                          parent: AlwaysScrollableScrollPhysics()),
                       itemCount: allFuels.length,
                       itemBuilder: (context, index) =>
                           fuelCardPortrait(allFuels, index),
@@ -124,6 +126,8 @@ class _HomePageState extends State<HomePage> {
                                 ? fuelCardPortrait(allFuels, index)
                                 : const SizedBox(),
                             addAutomaticKeepAlives: false,
+                            physics: const BouncingScrollPhysics(
+                                parent: AlwaysScrollableScrollPhysics()),
                           ),
                         ),
                         Expanded(
@@ -133,11 +137,12 @@ class _HomePageState extends State<HomePage> {
                                 ? fuelCardPortrait(allFuels, index)
                                 : const SizedBox(),
                             addAutomaticKeepAlives: false,
+                            physics: const BouncingScrollPhysics(
+                                parent: AlwaysScrollableScrollPhysics()),
                           ),
                         ),
                       ],
                     );
-                    
                   }
                 },
               )
