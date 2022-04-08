@@ -1,0 +1,4 @@
+Sync up brancehes:
+    git checkout <branch name>      
+    git fetch origin        
+    git merge origin/master
