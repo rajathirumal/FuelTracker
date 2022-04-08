@@ -2,10 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fuel_tracker/services/authentication.dart';
-import 'package:fuel_tracker/provider/fuelProvider.dart';
+import 'package:fuel_tracker/provider/fuel_provider.dart';
 import 'package:fuel_tracker/services/firebaseServices.dart';
-import 'package:fuel_tracker/src/home/home.dart';
-import 'package:fuel_tracker/src/home/login.dart';
+import 'package:fuel_tracker/src/pages/home.dart';
+import 'package:fuel_tracker/src/pages/login.dart';
 import 'package:provider/provider.dart';
 import 'package:fuel_tracker/src/helpers/project.properties.dart';
 
@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
             backgroundColor: MyAppThemeProperties().backGroundColor,
             titleTextStyle: MyAppThemeProperties().titleTextColor,
             elevation: 0.0,
-            iconTheme: IconThemeData(color: Colors.black),
+            iconTheme: const IconThemeData(color: Colors.black),
           ),
           popupMenuTheme: PopupMenuThemeData(
             color: MyAppThemeProperties().backGroundColor,

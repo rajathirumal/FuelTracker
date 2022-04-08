@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fuel_tracker/models/fuel.dart';
-import 'package:fuel_tracker/provider/fuelProvider.dart';
+import 'package:fuel_tracker/provider/fuel_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:fuel_tracker/src/helpers/extension.dart';
 import 'package:provider/provider.dart';
@@ -8,6 +8,7 @@ import 'package:uuid/uuid.dart';
 
 class AddFuelPage extends StatefulWidget {
   final FuelData? fuel;
+  // ignore: use_key_in_widget_constructors
   const AddFuelPage([this.fuel]);
 
   @override
@@ -89,7 +90,7 @@ class _AddFuelPageState extends State<AddFuelPage> {
                   if (value == null || value.isEmpty) {
                     return 'Please enter cost per liter';
                   } else {
-                    null;
+                    return null;
                   }
                 },
               ),
