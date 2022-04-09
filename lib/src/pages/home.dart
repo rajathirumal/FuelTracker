@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:fuel_tracker/services/authentication.dart';
 import 'package:fuel_tracker/src/helpers/extension.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -105,47 +106,71 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         body: (allFuels != null)
-            ? OrientationBuilder(
-                builder: (context, orientation) {
-                  if (orientation == Orientation.portrait) {
-                    return ListView.builder(
-                      physics: const BouncingScrollPhysics(
-                          parent: AlwaysScrollableScrollPhysics()),
-                      itemCount: allFuels.length,
-                      itemBuilder: (context, index) =>
-                          fuelCardPortrait(allFuels, index),
-                      addAutomaticKeepAlives: false,
-                    );
-                  } else {
-                    return Row(
+            ? (allFuels.isEmpty)
+                ? Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Expanded(
-                          child: ListView.builder(
-                            itemCount: allFuels.length,
-                            itemBuilder: (context, index) => (index % 2 == 0)
-                                ? fuelCardPortrait(allFuels, index)
-                                : const SizedBox(),
-                            addAutomaticKeepAlives: false,
-                            physics: const BouncingScrollPhysics(
-                                parent: AlwaysScrollableScrollPhysics()),
+                        Text(
+                          "No data to show",
+                          style: GoogleFonts.montserrat(
+                            fontSize: 18,
                           ),
                         ),
-                        Expanded(
-                          child: ListView.builder(
-                            itemCount: allFuels.length,
-                            itemBuilder: (context, index) => (index % 2 != 0)
-                                ? fuelCardPortrait(allFuels, index)
-                                : const SizedBox(),
-                            addAutomaticKeepAlives: false,
-                            physics: const BouncingScrollPhysics(
-                                parent: AlwaysScrollableScrollPhysics()),
+                        Text(
+                          "Try adding fuels from + button on top",
+                          style: GoogleFonts.montserrat(
+                            fontSize: 15,
+                            fontStyle: FontStyle.italic,
+                            color: Colors.black45,
                           ),
                         ),
                       ],
-                    );
-                  }
-                },
-              )
+                    ),
+                  )
+                : OrientationBuilder(
+                    builder: (context, orientation) {
+                      if (orientation == Orientation.portrait) {
+                        return ListView.builder(
+                          physics: const BouncingScrollPhysics(
+                              parent: AlwaysScrollableScrollPhysics()),
+                          itemCount: allFuels.length,
+                          itemBuilder: (context, index) =>
+                              fuelCardPortrait(allFuels, index),
+                          addAutomaticKeepAlives: false,
+                        );
+                      } else {
+                        return Row(
+                          children: [
+                            Expanded(
+                              child: ListView.builder(
+                                itemCount: allFuels.length,
+                                itemBuilder: (context, index) =>
+                                    (index % 2 == 0)
+                                        ? fuelCardPortrait(allFuels, index)
+                                        : const SizedBox(),
+                                addAutomaticKeepAlives: false,
+                                physics: const BouncingScrollPhysics(
+                                    parent: AlwaysScrollableScrollPhysics()),
+                              ),
+                            ),
+                            Expanded(
+                              child: ListView.builder(
+                                itemCount: allFuels.length,
+                                itemBuilder: (context, index) =>
+                                    (index % 2 != 0)
+                                        ? fuelCardPortrait(allFuels, index)
+                                        : const SizedBox(),
+                                addAutomaticKeepAlives: false,
+                                physics: const BouncingScrollPhysics(
+                                    parent: AlwaysScrollableScrollPhysics()),
+                              ),
+                            ),
+                          ],
+                        );
+                      }
+                    },
+                  )
             : const Center(child: CircularProgressIndicator.adaptive()),
       ),
     );
