@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fuel_tracker/models/analysis.dart';
 import 'package:fuel_tracker/models/fuel.dart';
 
 class FireStoreService {
@@ -20,5 +21,9 @@ class FireStoreService {
               .map((document) => FuelData.fromMap(document.data()))
               .toList(),
         );
+  }
+
+  Future<void> addAnalysisToFireStore(Analysis newData) {
+    return db.collection("analysis").doc("current").set(newData.toMap());
   }
 }

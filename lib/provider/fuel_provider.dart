@@ -61,6 +61,4 @@ class FuelProvider with ChangeNotifier {
     _atKm = fuel.atKm;
     _remainingKM = fuel.remainingKM;
   }
-
-  removeFuelFromFireStore() {}
 }
