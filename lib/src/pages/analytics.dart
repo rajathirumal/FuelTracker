@@ -36,9 +36,10 @@ class _AnalyticsState extends State<Analytics> {
       body: Center(
         child: FutureBuilder(
           future: AnalysisService().calculate(allFuels),
-          builder: (BuildContext context, AsyncSnapshot snapshot) {
-            if (snapshot.hasData) {
-              return Text(snapshot.data["refuelCount"].toString());
+          builder: (BuildContext context, AsyncSnapshot analysisSnapshot) {
+            if (analysisSnapshot.hasData) {
+              return analysisBoadr(
+                  analysisSnapshot); //Text(analysisSnapshot.data["refuelCount"].toString());
             } else {
               return const CircularProgressIndicator.adaptive();
             }
@@ -47,5 +48,12 @@ class _AnalyticsState extends State<Analytics> {
         // Text(data1.get("refuelCount").toString()),
       ),
     );
+  }
+
+  Widget analysisBoadr(analysisSnapshot) {
+
+    
+
+    return Text(analysisSnapshot.data["couldHaveSaved"].toString());
   }
 }

@@ -67,103 +67,107 @@ class _AddFuelPageState extends State<AddFuelPage> {
         ),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Form(
-            key: _fuelFormKey,
-            child: Column(
-              children: [
-                TextFormField(
-                  decoration: const InputDecoration(
-                    label: Text("Refueled for"),
-                    hintText: "In  ₹",
-                    prefixIcon: Icon(Icons.bubble_chart),
-                    suffix: Text("₹"),
-                    border: OutlineInputBorder(),
-                  ),
-                  controller: fuelForTEC,
-                  keyboardType: TextInputType.number,
-                  validator: (value) => (value == null || value.isEmpty)
-                      ? 'Please enter money spent'
-                      : null,
+      body: SizedBox(
+          height: double.infinity,
+          child: SingleChildScrollView(
+            child: Padding(
+              // padding: const EdgeInsets.all(20.0),
+              padding:
+                  const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
+              child: Form(
+                key: _fuelFormKey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        label: Text("Refueled for"),
+                        hintText: "In  ₹",
+                        prefixIcon: Icon(Icons.bubble_chart),
+                        suffix: Text("₹"),
+                        border: OutlineInputBorder(),
+                      ),
+                      controller: fuelForTEC,
+                      keyboardType: TextInputType.number,
+                      validator: (value) => (value == null || value.isEmpty)
+                          ? 'Please enter money spent'
+                          : null,
+                    ),
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        label: Text("Price per liter"),
+                        hintText: "In ₹",
+                        prefixIcon: Icon(Icons.attach_money),
+                        suffix: Text("₹"),
+                        border: OutlineInputBorder(),
+                      ),
+                      controller: marketPriceTEC,
+                      keyboardType: TextInputType.number,
+                      validator: (value) => (value == null || value.isEmpty)
+                          ? 'Please enter cost per liter'
+                          : null,
+                    ),
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        label: Text("Oodometer reading"),
+                        hintText: "In KM",
+                        prefixIcon: Icon(Icons.speed_sharp),
+                        suffix: Text("Km"),
+                        border: OutlineInputBorder(),
+                      ),
+                      controller: atKmTEC,
+                      keyboardType: TextInputType.number,
+                      validator: (value) => (value == null || value.isEmpty)
+                          ? 'Please enter current oodometer reading'
+                          : null,
+                    ),
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        label: Text("Remaining"),
+                        hintText: "In KM",
+                        prefixIcon: Icon(Icons.grain_sharp),
+                        suffix: Text("Km"),
+                        border: OutlineInputBorder(),
+                      ),
+                      controller: remainingKmTEC,
+                      keyboardType: TextInputType.number,
+                      validator: (value) => (value == null || value.isEmpty)
+                          ? 'Please enter remaining KM'
+                          : null,
+                    ),
+                    const SizedBox(height: 20.0),
+                    ElevatedButton(
+                      onPressed: () {
+                        if (_fuelFormKey.currentState!.validate()) {
+                          fuelProvider.saveFuelToFireStore(
+                            fuelID: widget.fuel == null
+                                ? const Uuid().v1()
+                                : widget.fuel!.fuelID,
+                            fuelforprice: fuelForTEC.text,
+                            marketprice: marketPriceTEC.text,
+                            atkms: atKmTEC.text,
+                            remainingkms: remainingKmTEC.text,
+                            datefueld: widget.fuel == null
+                                ? DateTime.now().toString()
+                                : widget.fuel!.dateOfFuel,
+                          );
+                          Navigator.of(context).pop();
+                        }
+                      },
+                      child: const Text(
+                        'Add fuel',
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 20),
-                TextFormField(
-                  decoration: const InputDecoration(
-                    label: Text("Price per liter"),
-                    hintText: "In ₹",
-                    prefixIcon: Icon(Icons.attach_money),
-                    suffix: Text("₹"),
-                    border: OutlineInputBorder(),
-                  ),
-                  controller: marketPriceTEC,
-                  keyboardType: TextInputType.number,
-                  validator: (value) => (value == null || value.isEmpty)
-                      ? 'Please enter cost per liter'
-                      : null,
-                ),
-                const SizedBox(height: 20),
-                TextFormField(
-                  decoration: const InputDecoration(
-                    label: Text("Oodometer reading"),
-                    hintText: "In KM",
-                    prefixIcon: Icon(Icons.speed_sharp),
-                    suffix: Text("Km"),
-                    border: OutlineInputBorder(),
-                  ),
-                  controller: atKmTEC,
-                  keyboardType: TextInputType.number,
-                  validator: (value) => (value == null || value.isEmpty)
-                      ? 'Please enter current oodometer reading'
-                      : null,
-                ),
-                const SizedBox(height: 20),
-                TextFormField(
-                  decoration: const InputDecoration(
-                    label: Text("Remaining"),
-                    hintText: "In KM",
-                    prefixIcon: Icon(Icons.grain_sharp),
-                    suffix: Text("Km"),
-                    border: OutlineInputBorder(),
-                  ),
-                  controller: remainingKmTEC,
-                  keyboardType: TextInputType.number,
-                  validator: (value) => (value == null || value.isEmpty)
-                      ? 'Please enter remaining KM'
-                      : null,
-                ),
-                const SizedBox(height: 20.0),
-                ElevatedButton(
-                  onPressed: () {
-                    if (_fuelFormKey.currentState!.validate()) {
-                      fuelProvider.saveFuelToFireStore(
-                        fuelID: widget.fuel == null
-                            ? const Uuid().v1()
-                            : widget.fuel!.fuelID,
-                        fuelforprice: fuelForTEC.text,
-                        marketprice: marketPriceTEC.text,
-                        atkms: atKmTEC.text,
-                        remainingkms: remainingKmTEC.text,
-                        datefueld: widget.fuel == null
-                            ? DateTime.now().toString()
-                            : widget.fuel!.dateOfFuel,
-                      );
-                      Navigator.of(context).pop();
-                    }
-                  },
-                  child: const Text(
-                    'Add fuel',
-                    style: TextStyle(color: Colors.white, fontSize: 20),
-                  ),
-                ),
-              ],
+              ),
             ),
-          ),
-        ),
-        physics: const BouncingScrollPhysics(
-            parent: AlwaysScrollableScrollPhysics()),
-      ),
+            physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics()),
+          )),
     );
   }
 }
