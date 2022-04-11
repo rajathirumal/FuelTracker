@@ -138,29 +138,31 @@ class _AddFuelPageState extends State<AddFuelPage> {
                           : null,
                     ),
                     const SizedBox(height: 20.0),
-                    ElevatedButton(
-                      onPressed: () {
-                        if (_fuelFormKey.currentState!.validate()) {
-                          fuelProvider.saveFuelToFireStore(
-                            fuelID: widget.fuel == null
-                                ? const Uuid().v1()
-                                : widget.fuel!.fuelID,
-                            fuelforprice: fuelForTEC.text,
-                            marketprice: marketPriceTEC.text,
-                            atkms: atKmTEC.text,
-                            remainingkms: remainingKmTEC.text,
-                            datefueld: widget.fuel == null
-                                ? DateTime.now().toString()
-                                : widget.fuel!.dateOfFuel,
-                          );
-                          Navigator.of(context).pop();
-                        }
-                      },
-                      child: const Text(
-                        'Add fuel',
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      ),
-                    ),
+                    SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            if (_fuelFormKey.currentState!.validate()) {
+                              fuelProvider.saveFuelToFireStore(
+                                fuelID: widget.fuel == null
+                                    ? const Uuid().v1()
+                                    : widget.fuel!.fuelID,
+                                fuelforprice: fuelForTEC.text,
+                                marketprice: marketPriceTEC.text,
+                                atkms: atKmTEC.text,
+                                remainingkms: remainingKmTEC.text,
+                                datefueld: widget.fuel == null
+                                    ? DateTime.now().toString()
+                                    : widget.fuel!.dateOfFuel,
+                              );
+                              Navigator.of(context).pop();
+                            }
+                          },
+                          child: const Text(
+                            'Add fuel',
+                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          ),
+                        )),
                   ],
                 ),
               ),
