@@ -35,7 +35,7 @@ class _AnalyticsState extends State<Analytics> {
       ),
       body: Center(
         child: FutureBuilder(
-          future: AnalysisService().calculate(allFuels),
+          future: AnalysisService.calculate(allFuels),
           builder: (BuildContext context, AsyncSnapshot analysisSnapshot) {
             if (analysisSnapshot.hasData) {
               return analysisBoadr(
@@ -51,9 +51,6 @@ class _AnalyticsState extends State<Analytics> {
   }
 
   Widget analysisBoadr(analysisSnapshot) {
-
-    
-
     return Text(analysisSnapshot.data["couldHaveSaved"].toString());
   }
 }

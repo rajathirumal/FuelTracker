@@ -4,10 +4,10 @@ import 'package:fuel_tracker/models/fuel.dart';
 import 'package:fuel_tracker/services/firebaseServices.dart';
 
 class AnalysisService {
-  FirebaseFirestore db = FirebaseFirestore.instance;
-  final FireStoreService _fireStoreService = FireStoreService();
+  static FirebaseFirestore db = FirebaseFirestore.instance;
+  static final FireStoreService _fireStoreService = FireStoreService();
 
-  Future<dynamic> calculate(List<FuelData>? allFuel) async {
+  static Future<dynamic> calculate(List<FuelData>? allFuel) async {
     if (allFuel == null) {
     } else {
       double haveSaved = 0.0;

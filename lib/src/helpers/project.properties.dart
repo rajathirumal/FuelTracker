@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MyAppThemeProperties {
-  final actionColor = Colors.purple;
-  final backGroundColor = Colors.purple[50];
-  final actionIconTheme = const IconThemeData(color: Colors.purple);
-  final appBarIconTheme = const IconThemeData(color: Colors.purple);
-  final titleTextColor = const TextStyle(color: Colors.black, fontSize: 25);
+  static const actionColor = Colors.purple;
+  static final backGroundColor = Colors.purple[50];
+  static const actionIconTheme = IconThemeData(color: Colors.purple);
+  static const appBarIconTheme = IconThemeData(color: Colors.purple);
+  static const titleTextColor = TextStyle(color: Colors.black, fontSize: 25);
 }
