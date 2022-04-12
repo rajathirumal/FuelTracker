@@ -107,6 +107,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           padding: const EdgeInsets.only(left: 10, right: 10),
                           child: TextFormField(
                             // The validator receives the text that the user has entered.
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
                             keyboardType: TextInputType.emailAddress,
                             controller: emailController,
                             decoration: const InputDecoration(
@@ -118,7 +120,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               if (value == null ||
                                   value.isEmpty ||
                                   !value.emailRegex) {
-                                return 'Please valid email.(Example: user@domain.com)';
+                                return 'Enter valid email.(Example: user@domain.com)';
                               }
                               return null;
                             },
@@ -137,6 +139,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: Padding(
                           padding: const EdgeInsets.only(left: 10, right: 10),
                           child: TextFormField(
+                            enableSuggestions: true,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
                             obscureText: true,
                             controller: passController,
                             decoration: const InputDecoration(
@@ -146,7 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please enter password';
+                                return 'Enter password';
                               } else if (value.length < 6) {
                                 return "Password should be atlest 6 charecters";
                               }
