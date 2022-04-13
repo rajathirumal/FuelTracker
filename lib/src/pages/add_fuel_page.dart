@@ -169,7 +169,7 @@ class _AddFuelPageState extends State<AddFuelPage> {
                       },
                       child: const Text(
                         'Add fuel',
-                        style: TextStyle(color: Colors.white, fontSize: 20),
+                        style: TextStyle( fontSize: 20),
                       ),
                     ),
                   ),
