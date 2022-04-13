@@ -41,13 +41,15 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          scaffoldBackgroundColor: Colors.purple[50],
-          appBarTheme: AppBarTheme(
-            backgroundColor: MyAppThemeProperties.backGroundColor,
-            titleTextStyle: MyAppThemeProperties.titleTextColor,
-            elevation: 0.0,
-            iconTheme: const IconThemeData(color: Colors.black),
+        theme: //ThemeData.dark(),
+            ThemeData(
+          // used in home.dart
+          cardTheme: CardTheme(
+            color: Colors.purple[100],
+            elevation: 8.0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8.0),
+            ),
           ),
           popupMenuTheme: PopupMenuThemeData(
             color: MyAppThemeProperties.backGroundColor,
@@ -57,6 +59,20 @@ class MyApp extends StatelessWidget {
             ),
             elevation: 20,
           ),
+          // used in dd_fuel_page.dart
+          buttonTheme: const ButtonThemeData(
+            textTheme: ButtonTextTheme.normal,
+            buttonColor: MyAppThemeProperties.actionColor,
+          ),
+          // used all over the app
+          scaffoldBackgroundColor: Colors.purple[50],
+          appBarTheme: AppBarTheme(
+            backgroundColor: MyAppThemeProperties.backGroundColor,
+            titleTextStyle: MyAppThemeProperties.titleTextColor,
+            elevation: 0.0,
+            iconTheme: const IconThemeData(color: Colors.black),
+          ),
+
           dividerColor: Colors.blueGrey,
           primarySwatch: MyAppThemeProperties.actionColor,
           visualDensity: VisualDensity.adaptivePlatformDensity,

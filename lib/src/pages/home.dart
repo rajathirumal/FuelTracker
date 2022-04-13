@@ -136,7 +136,7 @@ class _HomePageState extends State<HomePage> {
                               parent: AlwaysScrollableScrollPhysics()),
                           itemCount: allFuels.length,
                           itemBuilder: (context, index) =>
-                              fuelCardPortrait(allFuels, index),
+                              fuelCard(allFuels, index),
                           addAutomaticKeepAlives: false,
                         );
                       } else {
@@ -147,7 +147,7 @@ class _HomePageState extends State<HomePage> {
                                 itemCount: allFuels.length,
                                 itemBuilder: (context, index) =>
                                     (index % 2 == 0)
-                                        ? fuelCardPortrait(allFuels, index)
+                                        ? fuelCard(allFuels, index)
                                         : const SizedBox(),
                                 addAutomaticKeepAlives: false,
                                 physics: const BouncingScrollPhysics(
@@ -159,7 +159,7 @@ class _HomePageState extends State<HomePage> {
                                 itemCount: allFuels.length,
                                 itemBuilder: (context, index) =>
                                     (index % 2 != 0)
-                                        ? fuelCardPortrait(allFuels, index)
+                                        ? fuelCard(allFuels, index)
                                         : const SizedBox(),
                                 addAutomaticKeepAlives: false,
                                 physics: const BouncingScrollPhysics(
@@ -176,7 +176,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget fuelCardPortrait(List<FuelData> fuel, int index) {
+  Widget fuelCard(List<FuelData> fuel, int index) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: GestureDetector(
@@ -189,11 +189,6 @@ class _HomePageState extends State<HomePage> {
           );
         },
         child: Card(
-          elevation: 8.0,
-          color: Colors.purple[100],
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.0),
-          ),
           child: Padding(
             padding:
                 const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
