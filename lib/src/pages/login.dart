@@ -18,6 +18,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final auth = FirebaseAuth.instance;
   bool loginError = false;
 
+  bool isPasswordHidden = true;
+
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -113,8 +115,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             decoration: const InputDecoration(
                               label: Text("Email"),
                               hintText: "Email",
-                              hintStyle:
-                                  TextStyle(fontSize: 20, color: Colors.black),
                               prefixIcon: Icon(Icons.person),
                             ),
                             validator: (value) {
@@ -143,17 +143,19 @@ class _LoginScreenState extends State<LoginScreen> {
                             enableSuggestions: true,
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
-                            obscureText: true,
+                            obscureText: isPasswordHidden,
                             controller: passController,
                             decoration: InputDecoration(
-                              label: Text("Password"),
+                              label: const Text("Password"),
                               hintText: "Password",
-                              hintStyle:
-                                  TextStyle(fontSize: 20, color: Colors.black),
-                              prefixIcon: Icon(Icons.password_sharp),
-                              suffix: GestureDetector(
-                                onTap: () {},
-                                child: Icon(Icons.visibility_off),
+                              prefixIcon: const Icon(Icons.password_sharp),
+                              suffixIcon: IconButton(
+                                icon: isPasswordHidden
+                                    ? const Icon(Icons.visibility_off_outlined)
+                                    : const Icon(Icons.visibility_outlined),
+                                onPressed: () => setState(
+                                  () => isPasswordHidden = !isPasswordHidden,
+                                ),
                               ),
                             ),
                             validator: (value) {
