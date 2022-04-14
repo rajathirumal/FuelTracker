@@ -7,7 +7,7 @@ class AnalysisService {
   static FirebaseFirestore db = FirebaseFirestore.instance;
   static final FireStoreService _fireStoreService = FireStoreService();
 
-  static Future<dynamic> calculate(List<FuelData>? allFuel) async {
+  static Future<dynamic> calculateAndGetCurrentSnapshot(List<FuelData>? allFuel) async {
     if (allFuel == null) {
     } else {
       double haveSaved = 0.0;

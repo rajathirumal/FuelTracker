@@ -42,8 +42,8 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: //ThemeData.dark(),
+            // used in home.dart
             ThemeData(
-          // used in home.dart
           cardTheme: CardTheme(
             color: Colors.purple[100],
             elevation: 8.0,
