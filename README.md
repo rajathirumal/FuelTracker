@@ -15,6 +15,7 @@ Have the additional features such as insights and refuel tracking. 📉📊
 | provider | ^6.0.2 | State management |
 | uuid | ^3.0.6 | Creation of unique ID |
 | google_fonts | ^2.3.1 | Google fonts |
+| animated_text_kit | ^4.2.1 | Text animation |
 
 ## Instalation
 

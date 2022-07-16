@@ -6,8 +6,6 @@ import 'package:fuel_tracker/src/helpers/extension.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
-import '../../provider/fuel_provider.dart';
-
 class AddFuelPage extends StatefulWidget {
   final FuelData? fuel;
   // ignore: use_key_in_widget_constructors
@@ -169,7 +167,7 @@ class _AddFuelPageState extends State<AddFuelPage> {
                       },
                       child: const Text(
                         'Add fuel',
-                        style: TextStyle( fontSize: 20),
+                        style: TextStyle(fontSize: 20),
                       ),
                     ),
                   ),

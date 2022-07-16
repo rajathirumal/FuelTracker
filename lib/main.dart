@@ -72,7 +72,7 @@ class MyApp extends StatelessWidget {
             elevation: 0.0,
             iconTheme: const IconThemeData(color: Colors.black),
           ),
-
+      
           dividerColor: Colors.blueGrey,
           primarySwatch: MyAppThemeProperties.actionColor,
           visualDensity: VisualDensity.adaptivePlatformDensity,

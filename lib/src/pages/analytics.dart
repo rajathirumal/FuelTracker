@@ -83,6 +83,9 @@ class _AnalyticsState extends State<Analytics> {
             ),
           ],
         ),
+        physics: const BouncingScrollPhysics(
+          parent: AlwaysScrollableScrollPhysics(),
+        ),
       ),
     );
   }
@@ -103,23 +106,100 @@ class _AnalyticsState extends State<Analytics> {
     );
   }
 
-  Widget analysisBoadr(analysisSnapshot) {
+  Widget analysisBoadr1(analysisSnapshot) {
     // return Text(analysisSnapshot.data["couldHaveSaved"].toString());
     return Column(
       children: [
         ListTile(
-          title: Text(analysisSnapshot.data["lastUpdate"].toString()),
+          title: Text(
+            "Last Update : " + analysisSnapshot.data["lastUpdate"].toString(),
+          ),
         ),
         ListTile(
-          title: Text(analysisSnapshot.data["couldHaveSaved"].toString()),
+          title: Text(
+            "Could Have saved : " +
+                analysisSnapshot.data["couldHaveSaved"].toString(),
+          ),
         ),
         ListTile(
-          title: Text(analysisSnapshot.data["refuelCount"].toString()),
+          title: Text(
+            "Refuel Count : " + analysisSnapshot.data["refuelCount"].toString(),
+          ),
         ),
         ListTile(
-          title: Text(analysisSnapshot.data["totalMoneySpent"].toString()),
+          title: Text(
+            "Money spent : " +
+                analysisSnapshot.data["totalMoneySpent"].toString(),
+          ),
         ),
       ],
+    );
+  }
+
+  Widget analysisBoadr(analysisSnapshot) {
+    // return Text(analysisSnapshot.data["couldHaveSaved"].toString());
+    return Center(
+      child: Card(
+        // margin: EdgeInsets.all(40),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            // vehicle type , number
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                const SizedBox(
+                  width: 8,
+                ),
+                TextButton.icon(
+                  icon: const Icon(
+                    Icons.car_rental,
+                    // size: 20,
+                  ),
+                  label: const Text("CAR"),
+                  onPressed: () {/* ... */},
+                ),
+                const SizedBox(
+                  width: 8,
+                ),
+                TextButton(
+                  child: const Text('TN 38 CR 0648'),
+                  onPressed: () {/* ... */},
+                ),
+              ],
+            ),
+            ListTile(
+              title: Text(
+                "Could Have saved : " +
+                    analysisSnapshot.data["couldHaveSaved"].toString(),
+              ),
+            ),
+            ListTile(
+              title: Text(
+                "Refuel Count : " +
+                    analysisSnapshot.data["refuelCount"].toString(),
+              ),
+            ),
+            ListTile(
+              title: Text(
+                "Money spent : " +
+                    analysisSnapshot.data["totalMoneySpent"].toString(),
+              ),
+            ),
+
+            // low row - last update
+            const SizedBox(
+              height: 10,
+            ),
+            Text(
+              "Last Update : " + analysisSnapshot.data["lastUpdate"].toString(),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
