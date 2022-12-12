@@ -52,6 +52,9 @@ class _AnalyticsState extends State<Analytics> {
         ),
       ),
       body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(
+          parent: AlwaysScrollableScrollPhysics(),
+        ),
         child: Column(
           children: [
             const SizedBox(height: 20),
@@ -82,9 +85,6 @@ class _AnalyticsState extends State<Analytics> {
               // Text(data1.get("refuelCount").toString()),
             ),
           ],
-        ),
-        physics: const BouncingScrollPhysics(
-          parent: AlwaysScrollableScrollPhysics(),
         ),
       ),
     );
