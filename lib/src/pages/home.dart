@@ -39,12 +39,7 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           title: FittedBox(
             child: Text(
-              "Welcome " +
-                  FirebaseAuth.instance.currentUser!.email
-                      .toString()
-                      .split('@')
-                      .first
-                      .inCaps,
+              "Welcome ${FirebaseAuth.instance.currentUser!.email.toString().split('@').first.inCaps}",
             ),
           ),
           actions: [

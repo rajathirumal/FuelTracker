@@ -9,12 +9,12 @@ Have the additional features such as insights and refuel tracking. 📉📊
 
 | Dependency or Module name  | Version used | Usage |
 | ------------- | ------------- | ------------- |
-| firebase_core | ^1.13.1 | Core firebase utility |
-| firebase_auth | ^3.3.10 | To perform firebase authentication |
-| cloud_firestore | ^3.1.10 | Interact with firestore |
-| provider | ^6.0.2 | State management |
+| firebase_core | ^2.4.0 | Core firebase utility |
+| firebase_auth | ^4.2.0 | To perform firebase authentication |
+| cloud_firestore | ^4.2.0 | Interact with firestore |
+| provider |^6.0.2 | State management |
 | uuid | ^3.0.6 | Creation of unique ID |
-| google_fonts | ^2.3.1 | Google fonts |
+| google_fonts | ^3.0.1 | Google fonts |
 | animated_text_kit | ^4.2.1 | Text animation |
 
 ## Instalation
