@@ -55,12 +55,7 @@ class _AddFuelPageState extends State<AddFuelPage> {
       appBar: AppBar(
         title: FittedBox(
           child: Text(
-            "Add fuel - " +
-                FirebaseAuth.instance.currentUser!.email
-                    .toString()
-                    .split('@')
-                    .first
-                    .inCaps,
+            "Add fuel - ${FirebaseAuth.instance.currentUser!.email.toString().split('@').first.inCaps}",
           ),
         ),
         centerTitle: true,
@@ -68,6 +63,8 @@ class _AddFuelPageState extends State<AddFuelPage> {
       body: SizedBox(
         height: double.infinity,
         child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics()),
           child: Padding(
             // padding: const EdgeInsets.all(20.0),
             padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
@@ -175,8 +172,6 @@ class _AddFuelPageState extends State<AddFuelPage> {
               ),
             ),
           ),
-          physics: const BouncingScrollPhysics(
-              parent: AlwaysScrollableScrollPhysics()),
         ),
       ),
     );

@@ -27,6 +27,8 @@ class _LoginScreenState extends State<LoginScreen> {
       body: SizedBox(
         height: double.infinity,
         child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics()),
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
@@ -214,8 +216,6 @@ class _LoginScreenState extends State<LoginScreen> {
               ],
             ),
           ),
-          physics: const BouncingScrollPhysics(
-              parent: AlwaysScrollableScrollPhysics()),
         ),
       ),
     );
