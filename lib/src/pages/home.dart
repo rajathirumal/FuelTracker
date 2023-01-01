@@ -24,150 +24,136 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final allFuels = Provider.of<List<FuelData>?>(context);
-    return MultiProvider(
-      providers: [
-        Provider<AuthenticationService>(
-          create: (context) => AuthenticationService(FirebaseAuth.instance),
+    return Scaffold(
+      appBar: AppBar(
+        title: FittedBox(
+          child: Text(
+            "Welcome ${FirebaseAuth.instance.currentUser!.email.toString().split('@').first.inCaps}",
+          ),
         ),
-        StreamProvider(
-          create: (context) =>
-              context.read<AuthenticationService>().authStateChange,
-          initialData: null,
-        ),
-      ],
-      child: Scaffold(
-        appBar: AppBar(
-          title: FittedBox(
-            child: Text(
-              "Welcome ${FirebaseAuth.instance.currentUser!.email.toString().split('@').first.inCaps}",
+        actions: [
+          IconButton(
+            onPressed: () => Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const AddFuelPage())),
+            icon: const Icon(
+              Icons.add,
+              size: 30,
             ),
           ),
-          actions: [
-            IconButton(
-              onPressed: () => Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const AddFuelPage())),
-              icon: const Icon(
-                Icons.add,
-                size: 30,
-              ),
-            ),
-            PopupMenuButton<MenuOptions>(
-              onSelected: (value) {
-                switch (value) {
-                  case MenuOptions.analytics:
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const Analytics()));
-                    break;
-                  case MenuOptions.logout:
-                    context.read<AuthenticationService>().signOut();
-                    break;
-                  default:
-                }
-              },
-              itemBuilder: (BuildContext context) {
-                return <PopupMenuEntry<MenuOptions>>[
-                  PopupMenuItem(
-                    value: MenuOptions.analytics,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Icon(
-                          Icons.analytics_outlined,
-                          color: Colors.black,
-                        ),
-                        Text("Analysis"),
-                      ],
-                    ),
+          PopupMenuButton<MenuOptions>(
+            onSelected: (value) {
+              switch (value) {
+                case MenuOptions.analytics:
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const Analytics()));
+                  break;
+                case MenuOptions.logout:
+                  context.read<AuthenticationService>().signOut();
+                  break;
+                default:
+              }
+            },
+            itemBuilder: (BuildContext context) {
+              return <PopupMenuEntry<MenuOptions>>[
+                PopupMenuItem(
+                  value: MenuOptions.analytics,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Icon(
+                        Icons.analytics_outlined,
+                        color: Colors.black,
+                      ),
+                      Text("Analysis"),
+                    ],
                   ),
-                  const PopupMenuDivider(height: 1),
-                  PopupMenuItem(
-                    value: MenuOptions.logout,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Icon(
-                          Icons.logout,
-                          color: Colors.black,
-                        ),
-                        Text("Logout"),
-                      ],
-                    ),
+                ),
+                const PopupMenuDivider(height: 1),
+                PopupMenuItem(
+                  value: MenuOptions.logout,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Icon(
+                        Icons.logout,
+                        color: Colors.black,
+                      ),
+                      Text("Logout"),
+                    ],
                   ),
-                ];
-              },
-            ),
-          ],
-        ),
-        body: (allFuels != null)
-            ? (allFuels.isEmpty)
-                ? Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "No data to show",
-                          style: GoogleFonts.montserrat(
-                            fontSize: 18,
-                          ),
-                        ),
-                        Text(
-                          "Try adding fuels from + button on top",
-                          style: GoogleFonts.montserrat(
-                            fontSize: 15,
-                            fontStyle: FontStyle.italic,
-                            color: Colors.black45,
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                : OrientationBuilder(
-                    builder: (context, orientation) {
-                      if (orientation == Orientation.portrait) {
-                        return ListView.builder(
-                          physics: const BouncingScrollPhysics(
-                              parent: AlwaysScrollableScrollPhysics()),
-                          itemCount: allFuels.length,
-                          itemBuilder: (context, index) =>
-                              fuelCard(allFuels, index),
-                          addAutomaticKeepAlives: false,
-                        );
-                      } else {
-                        return Row(
-                          children: [
-                            Expanded(
-                              child: ListView.builder(
-                                itemCount: allFuels.length,
-                                itemBuilder: (context, index) =>
-                                    (index % 2 == 0)
-                                        ? fuelCard(allFuels, index)
-                                        : const SizedBox(),
-                                addAutomaticKeepAlives: false,
-                                physics: const BouncingScrollPhysics(
-                                    parent: AlwaysScrollableScrollPhysics()),
-                              ),
-                            ),
-                            Expanded(
-                              child: ListView.builder(
-                                itemCount: allFuels.length,
-                                itemBuilder: (context, index) =>
-                                    (index % 2 != 0)
-                                        ? fuelCard(allFuels, index)
-                                        : const SizedBox(),
-                                addAutomaticKeepAlives: false,
-                                physics: const BouncingScrollPhysics(
-                                    parent: AlwaysScrollableScrollPhysics()),
-                              ),
-                            ),
-                          ],
-                        );
-                      }
-                    },
-                  )
-            : const Center(child: CircularProgressIndicator.adaptive()),
+                ),
+              ];
+            },
+          ),
+        ],
       ),
+      body: (allFuels != null)
+          ? (allFuels.isEmpty)
+              ? Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "No data to show",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 18,
+                        ),
+                      ),
+                      Text(
+                        "Try adding fuels from + button on top",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 15,
+                          fontStyle: FontStyle.italic,
+                          color: Colors.black45,
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              : OrientationBuilder(
+                  builder: (context, orientation) {
+                    if (orientation == Orientation.portrait) {
+                      return ListView.builder(
+                        physics: const BouncingScrollPhysics(
+                            parent: AlwaysScrollableScrollPhysics()),
+                        itemCount: allFuels.length,
+                        itemBuilder: (context, index) =>
+                            fuelCard(allFuels, index),
+                        addAutomaticKeepAlives: false,
+                      );
+                    } else {
+                      return Row(
+                        children: [
+                          Expanded(
+                            child: ListView.builder(
+                              itemCount: allFuels.length,
+                              itemBuilder: (context, index) => (index % 2 == 0)
+                                  ? fuelCard(allFuels, index)
+                                  : const SizedBox(),
+                              addAutomaticKeepAlives: false,
+                              physics: const BouncingScrollPhysics(
+                                  parent: AlwaysScrollableScrollPhysics()),
+                            ),
+                          ),
+                          Expanded(
+                            child: ListView.builder(
+                              itemCount: allFuels.length,
+                              itemBuilder: (context, index) => (index % 2 != 0)
+                                  ? fuelCard(allFuels, index)
+                                  : const SizedBox(),
+                              addAutomaticKeepAlives: false,
+                              physics: const BouncingScrollPhysics(
+                                  parent: AlwaysScrollableScrollPhysics()),
+                            ),
+                          ),
+                        ],
+                      );
+                    }
+                  },
+                )
+          : const Center(child: CircularProgressIndicator.adaptive()),
     );
   }
 
